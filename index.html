@@ -1,42 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diaper Dash Countdown</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #4f5f60;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .wrap {
-      text-align: center;
-      padding: 20px;
-    }
-    .heading {
-      font-size: 18px;
-      margin-bottom: 12px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="heading">Countdown to Race Day</div>
-    <div id="raceday-countdown"></div>
-  </div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diaper Dash Countdown</title>
 
-  <script src="https://d368g9lw5ileu7.cloudfront.net/js/components/countdown.min.bNQJo4.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      new RSUCountdown("#raceday-countdown", 1777120259 * 1000);
-    });
-  </script>
+<style>
+body{
+background:#556566;
+color:white;
+font-family:Arial,Helvetica,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+text-align:center;
+}
+h2{margin-bottom:20px;}
+</style>
+
+</head>
+
+<body>
+
+<div>
+<h2>Countdown to Race Day</h2>
+<div id="raceday-countdown"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://d368g9lw5ileu7.cloudfront.net/js/components/countdown.min.bNQJo4.js"></script>
+
+<script>
+$(function(){
+new RSUCountdown("#raceday-countdown",1777120259*1000);
+});
+</script>
+
 </body>
 </html>
