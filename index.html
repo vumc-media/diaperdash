@@ -1,245 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diaper Dash 5K Countdown</title>
-  <style>
-    :root{
-      --bg:#556566;
-      --panel:#222526;
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.85);
-      --button:#ffffff;
-      --button-text:#2f3c3d;
-      --button-hover:#e9eeee;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diaper Dash Countdown Banner</title>
 
-    * { box-sizing: border-box; }
+<style>
+:root{
+--text:#ffffff;
+--muted:rgba(255,255,255,.88);
+--panel:rgba(20,24,26,.92);
+--panel-border:rgba(255,255,255,.08);
+--button-bg:#ffffff;
+--button-text:#314041;
+--button-hover:#eef3f3;
+}
 
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
+*{box-sizing:border-box;}
 
-    .wrap{
-      width:100%;
-      max-width:1200px;
-      text-align:center;
-    }
+html,body{
+margin:0;
+padding:0;
+background:transparent;
+font-family:Arial, Helvetica, sans-serif;
+overflow:hidden;
+}
 
-    .intro{
-      font-size: clamp(1.4rem, 2.2vw, 2.5rem);
-      font-weight:700;
-      line-height:1.2;
-      max-width:900px;
-      margin:0 auto 20px;
-    }
+.banner-shell{
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-    .subhead{
-      font-size: clamp(1rem, 1.5vw, 1.25rem);
-      font-weight:700;
-      margin-bottom:18px;
-    }
+.banner{
+width:100%;
+max-width:1920px;
+height:500px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:var(--text);
+padding:20px;
+}
 
-    .countdown{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:12px;
-      margin-bottom:28px;
-    }
+.content{
+width:100%;
+max-width:1200px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:14px;
+animation:fadeUp .7s ease-out both;
+}
 
-    .time-box{
-      background: var(--panel);
-      border-radius:8px;
-      padding:10px 12px;
-      min-width:92px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
-    }
+.title{
+margin:0;
+font-size:clamp(30px,2.2vw,42px);
+font-weight:800;
+line-height:1.1;
+}
 
-    .time-value{
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight:700;
-      line-height:1;
-      margin-bottom:6px;
-      font-variant-numeric: tabular-nums;
-    }
+.subtitle{
+margin:0;
+font-size:clamp(16px,1vw,20px);
+font-weight:700;
+color:var(--muted);
+}
 
-    .time-label{
-      font-size:.72rem;
-      font-weight:700;
-      text-transform:uppercase;
-      letter-spacing:.03em;
-      color: var(--muted);
-      line-height:1.2;
-    }
+.countdown{
+display:flex;
+gap:14px;
+margin-top:4px;
+margin-bottom:6px;
+}
 
-    .actions{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+.box{
+width:96px;
+padding:12px 10px;
+border-radius:12px;
+background:var(--panel);
+border:1px solid var(--panel-border);
+box-shadow:0 6px 16px rgba(0,0,0,.18);
+transition:.2s;
+}
 
-    .btn{
-      display:inline-block;
-      text-decoration:none;
-      border:none;
-      border-radius:999px;
-      padding:14px 24px;
-      font-size:1rem;
-      font-weight:700;
-      cursor:pointer;
-      transition:transform .15s ease, background .15s ease, opacity .15s ease;
-    }
+.box:hover{
+transform:translateY(-2px);
+}
 
-    .btn-primary{
-      background: var(--button);
-      color: var(--button-text);
-    }
+.number{
+font-size:clamp(30px,2vw,38px);
+font-weight:800;
+animation:pulse 1.2s ease-in-out infinite;
+}
 
-    .btn-primary:hover{
-      background: var(--button-hover);
-      transform: translateY(-1px);
-    }
+.label{
+margin-top:6px;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.08em;
+font-weight:700;
+color:rgba(255,255,255,.84);
+}
 
-    .event-note{
-      margin-top:18px;
-      font-size:.95rem;
-      color: var(--muted);
-    }
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:52px;
+padding:0 28px;
+border-radius:999px;
+text-decoration:none;
+background:var(--button-bg);
+color:var(--button-text);
+font-size:16px;
+font-weight:800;
+box-shadow:0 6px 18px rgba(0,0,0,.14);
+transition:.2s;
+}
 
-    @media (max-width: 640px){
-      .time-box{
-        min-width:78px;
-        padding:10px 10px;
-      }
+.btn:hover{
+background:var(--button-hover);
+transform:translateY(-2px);
+}
 
-      .intro{
-        margin-bottom:16px;
-      }
-    }
-  </style>
+.note{
+margin:0;
+font-size:clamp(14px,.95vw,17px);
+color:var(--muted);
+font-weight:700;
+}
+
+.hidden{display:none;}
+
+@media (max-width:900px){
+.banner{
+height:auto;
+padding:40px 20px;
+}
+.countdown{flex-wrap:wrap;justify-content:center;}
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes pulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.03);}
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="intro">
-      Join us for the inaugural Diaper Dash 5K presented by Versailles United Methodist Church!
-    </div>
 
-    <div class="subhead">Countdown to Race Day</div>
+<div class="banner-shell" id="bannerShell">
+<section class="banner">
 
-    <div class="countdown" id="countdown">
-      <div class="time-box">
-        <div class="time-value" id="months">00</div>
-        <div class="time-label">Months</div>
-      </div>
-      <div class="time-box">
-        <div class="time-value" id="days">00</div>
-        <div class="time-label">Days</div>
-      </div>
-      <div class="time-box">
-        <div class="time-value" id="hours">00</div>
-        <div class="time-label">Hours</div>
-      </div>
-      <div class="time-box">
-        <div class="time-value" id="minutes">00</div>
-        <div class="time-label">Minutes</div>
-      </div>
-      <div class="time-box">
-        <div class="time-value" id="seconds">00</div>
-        <div class="time-label">Seconds</div>
-      </div>
-    </div>
+<div class="content">
 
-    <div class="actions">
-      <a
-        class="btn btn-primary"
-        href="https://runsignup.com/Race/KY/Versailles/DiaperDash5KFREEKidSSprint?_gl=1*10039oe*_ga*MTQyMjIwMzY1LjE3NzE1OTY2MTQ.*_ga_QKEVS8BTWC*czE3NzQxMzc5MTYkbzIkZzAkdDE3NzQxMzc5MTYkajYwJGwwJGgw"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Register Now
-      </a>
-    </div>
+<h1 class="title">
+Join us for the inaugural Diaper Dash 5K presented by Versailles United Methodist Church!
+</h1>
 
-    <div class="event-note">
-      Saturday, April 25, 2026 • Versailles, Kentucky
-    </div>
-  </div>
+<p class="subtitle">Countdown to Race Day</p>
 
-  <script>
-    const raceDate = new Date("2026-04-25T08:30:00-04:00");
+<div class="countdown">
 
-    const monthsEl = document.getElementById("months");
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
+<div class="box">
+<div class="number" id="months">00</div>
+<div class="label">Months</div>
+</div>
 
-    function pad(num) {
-      return String(num).padStart(2, "0");
-    }
+<div class="box">
+<div class="number" id="days">00</div>
+<div class="label">Days</div>
+</div>
 
-    function calculateCountdown(targetDate) {
-      const now = new Date();
+<div class="box">
+<div class="number" id="hours">00</div>
+<div class="label">Hours</div>
+</div>
 
-      if (now >= targetDate) {
-        return {
-          months: 0,
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0
-        };
-      }
+<div class="box">
+<div class="number" id="minutes">00</div>
+<div class="label">Minutes</div>
+</div>
 
-      let tempDate = new Date(now);
-      let months = 0;
+<div class="box">
+<div class="number" id="seconds">00</div>
+<div class="label">Seconds</div>
+</div>
 
-      while (true) {
-        const nextMonth = new Date(tempDate);
-        nextMonth.setMonth(nextMonth.getMonth() + 1);
+</div>
 
-        if (nextMonth <= targetDate) {
-          months++;
-          tempDate = nextMonth;
-        } else {
-          break;
-        }
-      }
+<a class="btn"
+href="https://runsignup.com/Race/KY/Versailles/DiaperDash5KFREEKidSSprint?_gl=1*10039oe*_ga*MTQyMjIwMzY1LjE3NzE1OTY2MTQ.*_ga_QKEVS8BTWC*czE3NzQxMzc5MTYkbzIkZzAkdDE3NzQxMzc5MTYkajYwJGwwJGgw"
+target="_blank">
+Register Now
+</a>
 
-      const remainingMs = targetDate - tempDate;
-      const totalSeconds = Math.floor(remainingMs / 1000);
+<p class="note">
+Saturday, April 25, 2026 • Versailles, Kentucky
+</p>
 
-      const days = Math.floor(totalSeconds / (60 * 60 * 24));
-      const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
-      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-      const seconds = totalSeconds % 60;
+</div>
 
-      return { months, days, hours, minutes, seconds };
-    }
+</section>
+</div>
 
-    function updateCountdown() {
-      const time = calculateCountdown(raceDate);
+<script>
+const raceDate = new Date("2026-04-25T08:30:00-04:00");
+const hideAfterRace = true;
 
-      monthsEl.textContent = pad(time.months);
-      daysEl.textContent = pad(time.days);
-      hoursEl.textContent = pad(time.hours);
-      minutesEl.textContent = pad(time.minutes);
-      secondsEl.textContent = pad(time.seconds);
-    }
+function pad(n){return String(n).padStart(2,"0");}
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+function updateCountdown(){
+
+const now = new Date();
+let diff = raceDate - now;
+
+if(diff <= 0){
+if(hideAfterRace){
+document.getElementById("bannerShell").classList.add("hidden");
+return;
+}
+diff = 0;
+}
+
+const totalSeconds = Math.floor(diff/1000);
+
+const seconds = totalSeconds % 60;
+const minutes = Math.floor(totalSeconds/60) % 60;
+const hours = Math.floor(totalSeconds/3600) % 24;
+const daysTotal = Math.floor(totalSeconds/86400);
+
+const months = Math.floor(daysTotal/30);
+const days = daysTotal % 30;
+
+document.getElementById("months").textContent = pad(months);
+document.getElementById("days").textContent = pad(days);
+document.getElementById("hours").textContent = pad(hours);
+document.getElementById("minutes").textContent = pad(minutes);
+document.getElementById("seconds").textContent = pad(seconds);
+
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+</script>
+
 </body>
 </html>
