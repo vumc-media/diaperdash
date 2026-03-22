@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diaper Dash Countdown</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #4f5f60;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .wrap {
+      text-align: center;
+      padding: 20px;
+    }
+    .heading {
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="heading">Countdown to Race Day</div>
+    <div id="raceday-countdown"></div>
+  </div>
+
+  <script src="https://d368g9lw5ileu7.cloudfront.net/js/components/countdown.min.bNQJo4.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      new RSUCountdown("#raceday-countdown", 1777120259 * 1000);
+    });
+  </script>
+</body>
+</html>
